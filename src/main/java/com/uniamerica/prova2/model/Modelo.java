@@ -11,7 +11,7 @@ public class Modelo {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Marca marca;
 
     public Long getId() {

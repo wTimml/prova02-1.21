@@ -11,18 +11,9 @@ public class Carro {
 
     private String placa;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Modelo modelo;
 
-    private String reservaStatus;
-
-    public String getReservaStatus() {
-        return reservaStatus;
-    }
-
-    public void setReservaStatus(String reservaStatus) {
-        this.reservaStatus = reservaStatus;
-    }
 
     public Long getId() {
         return id;

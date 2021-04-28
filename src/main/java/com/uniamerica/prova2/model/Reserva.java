@@ -1,5 +1,7 @@
 package com.uniamerica.prova2.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,17 +12,26 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataRetirada;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataDevolucao;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Carro carro;
 
-    public Reserva(Long id, Date dataRetirada, Date dataDevolucao, Carro carro) {
+    private String status;
+
+    public Reserva() {
+    }
+
+    public Reserva(Long id, Date dataRetirada, Date dataDevolucao, Carro carro, String status) {
         this.id = id;
         this.dataRetirada = dataRetirada;
         this.dataDevolucao = dataDevolucao;
         this.carro = carro;
+        this.status = status;
     }
 
     public Long getId() {
@@ -55,4 +66,11 @@ public class Reserva {
         this.carro = carro;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

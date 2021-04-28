@@ -51,23 +51,16 @@ public class CarroController {
         return new ResponseEntity<>(list, null, HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/status")
-    public ResponseEntity getCarrosStatus(@PathVariable long id) {
-
-        List<Carro> list = carroService.getStatusDisponiveis();
-
-        if (!list.isEmpty()) {
-            return new ResponseEntity<>(list, null, HttpStatus.OK);
+    @GetMapping()
+    public ResponseEntity findAll() throws Exception{
+        List<Carro> carros;
+        try {
+            carros = carroService.findAll();
+        } catch (Exception e) {
+            throw new Exception(e);
         }
-        return new ResponseEntity<>(list, null, HttpStatus.NO_CONTENT);
+        return  new ResponseEntity<>(carros,null, HttpStatus.OK);
     }
 
-    @GetMapping("/status/{id}")
-    public ResponseEntity getReservaStatus(@PathVariable long id) {
-
-        String reservaStatus = carroService.getCarroStatus(id);
-
-        return new ResponseEntity<>(reservaStatus, null, HttpStatus.NO_CONTENT);
-    }
 
 }
